@@ -14,10 +14,10 @@ function Header(){
             </a>
             <ul>
                 <li>
-                    <a href='#'>INICIO</a>
+                    <a href='#'>HOME</a>
                 </li>
                 <li>
-                    <a href='#'>PRODUCTOS</a>
+                    <a href='#'>PRODUCTS</a>
                 </li>
             </ul>
             <div className='cart'>
