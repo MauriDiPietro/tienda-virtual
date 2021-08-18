@@ -1,5 +1,6 @@
 import React from 'react';
 import sportstore from '../../images/sportstore.png';
+import { Link } from 'react-router-dom';
 
 function Header(){
     return (
@@ -7,24 +8,24 @@ function Header(){
             {/* <div className='menu'>
                 <box-icon name='menu'></box-icon>
             </div> */}
-            <a href='#'>
+            <Link to='/'>
                 <div className='logo'>
                     <img src={sportstore} alt='' width='100'/>
                 </div>
-            </a>
+            </Link> 
             <ul>
                 <li>
-                    <a href='#'>HOME</a>
+                    <Link to='/'>HOME</Link>
                 </li>
                 <li>
-                    <a href='#'>PRODUCTS</a>
+                    <Link to='/products'>PRODUCTS</Link>
                 </li>
             </ul>
             <div className='cart'>
                 <box-icon name='cart'></box-icon>
                 <span className='item-total'>
                     0
-                </span>
+                </span> 
             </div>
         </header>
     )

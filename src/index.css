@@ -101,16 +101,17 @@ header .cart span{
   color: black
 }
 .productos{
-  padding: 5rem 2rem;
+  padding: 5rem 0;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   /*crea la cantidad de columnas necesarias*/
-  gap: 3rem 1rem;
+  gap: 3rem 2rem;
   box-sizing: border-box;
 }
 .producto{
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   box-shadow: 1px 10px 10px 2px rgba(0, 0, 0, .2);
@@ -148,6 +149,8 @@ header .cart span{
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem 2rem;
+  padding: 0 1rem;
+  margin: 1 rem;
 }
 .buttom btn{
   border: none;
@@ -157,14 +160,36 @@ header .cart span{
   border-radius: 5px;
 }
 .buttom button{
-  background-color: #3033d3;
+  cursor: pointer;
+  background-color: #ff6600;
 max-width: 250px;
 width: 100%;
 margin: 0 auto;
 font-size: 1.5rem;
-color: white;
+color: rgb(0, 0, 0);
 font-weight: 600;
 }
+.buttom button:hover{
+  background-color: black;
+  color: #ff6600; 
+}
+.buttom div{
+  background-color: #2b7bc7;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  margin-left: -2rem;
+  border-radius: 5px;
+}
+.buttom div a{
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+.buttom div a:hover{
+  color:white;
+}
+
+
 
 /*responsive*/
 @media only screen and(max-width: 600px){
