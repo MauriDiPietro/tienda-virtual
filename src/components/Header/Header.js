@@ -7,6 +7,7 @@ function Header(){
 
 const value = useContext(DataContext);
 const [menu, setMenu] = value.menu;
+const [cart] = value.cart
 
 //console.log(menu)
 
@@ -35,7 +36,7 @@ const tooglemenu = () => {
             <div className='cart' onClick={tooglemenu}>
                 <box-icon name='cart'></box-icon>
                 <span className='item-total'>
-                    0
+                    {cart.length}
                 </span> 
             </div>
         </header>

@@ -5,7 +5,8 @@ import {DataContext} from '../../context/Dataprovider';
 function Cart() {
 
 const value = useContext(DataContext);
-const [menu, setMenu] = value.menu
+const [menu, setMenu] = value.menu;
+const [cart, setCart] = value.cart;
 
 const tooglefalse = () =>{
     setMenu(false)
@@ -15,6 +16,18 @@ const tooglefalse = () =>{
 const show1 = menu ? "carritos show" : "carritos";
 const show2 = menu ? "carrito show" :   "carrito";
 
+const removeProduct = (id) =>{
+    if(window.confirm('Do you want to remove this product?')){
+        cart.forEach((item, index)=>{
+            if(item.id === id){
+            item.cantidad = 1;
+            cart.splice(index, 1)
+        }
+        })
+    }
+    setCart([...cart])
+}
+
     return (
         <div className={show1}>
             <div className={show2}>
@@ -23,22 +36,25 @@ const show2 = menu ? "carrito show" :   "carrito";
                 </div>
                 <h2>Your Cart</h2>
                 <div className='carrito__center'>
+                { cart.map((prod)=>(
                     <div className='carrito__item'>
-                        <img src={Img} alt=''/>
+                        <img src={prod.image.default} alt=''/>
                         <div>
-                            <h3>title</h3>
-                            <p className='price'>$444</p>
+                            <h3>{prod.title}</h3>
+                            <p className='price'>${prod.price}</p>
                         </div>
                         <div>
                             <box-icon name='up-arrow' type='solid'></box-icon>
-                            <p className='cantidad'>1</p>
+                            <p className='cantidad'>{prod.cantidad}</p>
                             <box-icon name='down-arrow' type='solid'></box-icon>
                         </div>
-                        <div className='remove__item'>
+                        <div className='remove__item' onClick={()=>removeProduct(prod.id)}>
                             <box-icon name='trash'></box-icon>
                         </div>
                     </div>
-                </div>
+                ))
+            }
+            </div>
                 <div className='carrito__footer'>
                     <h3>Total: $2000</h3>
                     <button className='btn'>Payment</button>

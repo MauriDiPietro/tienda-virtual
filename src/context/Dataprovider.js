@@ -6,6 +6,7 @@ export const DataContext = createContext();
 export const DataProvider = (props) =>{
     const [products, setProducts] = useState([]);
     const [menu, setMenu] = useState(false);
+    const [cart, setCart] = useState([]); 
 
     useEffect(()=>{
       const producto = Data.items
@@ -17,9 +18,36 @@ export const DataProvider = (props) =>{
 
     }, [])
 
+    const addCart = (id) => {
+        const check = cart.every(item=>{
+            return item.id !== id;
+        })
+        if(check){
+            const data = products.filter(prod=>{
+                return prod.id === id
+            })
+            setCart([...cart, ...data])
+        }else{
+            alert('This product exist in your cart')
+        }
+    }
+
+    useEffect(()=>{
+        const dataCart = JSON.parse(localStorage.getItem('dataCart'))
+         if(dataCart){
+             setCart(dataCart)
+         }
+    }, [])
+
+    useEffect(()=>{
+        localStorage.setItem('dataCart', JSON.stringify(cart))
+    }, [cart])
+
     const value = {
         productos : [products],
-        menu: [menu, setMenu]
+        menu: [menu, setMenu],
+        addCart: addCart,
+        cart: [cart, setCart]
     }
 
     return (
