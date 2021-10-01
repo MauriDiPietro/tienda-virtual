@@ -10,11 +10,11 @@ const addCart = value.addCart;
 
     return (
         <div className='producto'>
-            <a href='/'>
+            <Link to={`product/${id}`}>
             <div className='producto__img'>
                 <img src={image.default} alt=''/>
             </div>
-            </a>
+            </Link>
             <div className='producto__footer'>
                 <h1>{title}</h1>
                 <p> {category} </p>
@@ -25,7 +25,9 @@ const addCart = value.addCart;
                     Add to cart
                 </button>
                 <div>
-                <a href='/' className='btn'>View</a>
+                <Link to={`/product/${id}`} className='btn'>
+                    View
+                </Link>
                 </div>
             </div>
         </div>
