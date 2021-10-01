@@ -7,6 +7,7 @@ function Cart() {
 const value = useContext(DataContext);
 const [menu, setMenu] = value.menu;
 const [cart, setCart] = value.cart;
+const [total] = value.total;
 
 const tooglefalse = () =>{
     setMenu(false)
@@ -15,6 +16,24 @@ const tooglefalse = () =>{
 //condicional clase carrito show
 const show1 = menu ? "carritos show" : "carritos";
 const show2 = menu ? "carrito show" :   "carrito";
+
+const suma = (id) =>{
+    cart.forEach((prod)=>{
+        if(prod.id===id){
+            prod.cantidad += 1;
+        }
+        setCart([...cart])
+    })
+}
+
+const resta = (id)=>{
+    cart.forEach((prod)=>{
+        if(prod.id === id){
+            prod.cantidad === 1 ? prod.cantidad = 1 : prod.cantidad -=1;
+        }
+        setCart([...cart])
+    })
+}
 
 const removeProduct = (id) =>{
     if(window.confirm('Do you want to remove this product?')){
@@ -44,9 +63,9 @@ const removeProduct = (id) =>{
                             <p className='price'>${prod.price}</p>
                         </div>
                         <div>
-                            <box-icon name='up-arrow' type='solid'></box-icon>
+                            <box-icon name='up-arrow' type='solid' onClick={()=>suma(prod.id)}></box-icon>
                             <p className='cantidad'>{prod.cantidad}</p>
-                            <box-icon name='down-arrow' type='solid'></box-icon>
+                            <box-icon name='down-arrow' type='solid' onClick={()=>resta(prod.id)}></box-icon>
                         </div>
                         <div className='remove__item' onClick={()=>removeProduct(prod.id)}>
                             <box-icon name='trash'></box-icon>
@@ -56,7 +75,7 @@ const removeProduct = (id) =>{
             }
             </div>
                 <div className='carrito__footer'>
-                    <h3>Total: $2000</h3>
+                    <h3>Total: ${total}</h3>
                     <button className='btn'>Payment</button>
                 </div>
             </div>

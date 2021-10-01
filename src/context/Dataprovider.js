@@ -7,6 +7,7 @@ export const DataProvider = (props) =>{
     const [products, setProducts] = useState([]);
     const [menu, setMenu] = useState(false);
     const [cart, setCart] = useState([]); 
+    const [total, setTotal] = useState([]);
 
     useEffect(()=>{
       const producto = Data.items
@@ -41,13 +42,24 @@ export const DataProvider = (props) =>{
 
     useEffect(()=>{
         localStorage.setItem('dataCart', JSON.stringify(cart))
-    }, [cart])
+    }, [cart]);
+
+    useEffect(()=>{
+        const getTotal = () =>{
+            const res = cart.reduce((prev, item)=>{
+                return prev + (item.price * item.cantidad)
+            }, 0)
+            setTotal(res)
+        }
+        getTotal()
+    }, [cart]);
 
     const value = {
         productos : [products],
         menu: [menu, setMenu],
         addCart: addCart,
-        cart: [cart, setCart]
+        cart: [cart, setCart],
+        total: [total, setTotal]
     }
 
     return (
